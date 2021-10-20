@@ -29,6 +29,16 @@ export const getCoinsMarket = async (params) => {
   if (isValid) {
     const parsedParams = buildParams(params);
     // console.log(parsedParams)
-    return await instance.get(`/coins/markets${parsedParams}`);
+    try {
+      const res = await instance.get(`/coins/markets${parsedParams}`);
+      return { data: res.data };
+      // console.log(res.data);
+    } catch (error) {
+      return { error };
+    }
+  } else {
+    return {
+      error: "Invalid call parameters",
+    };
   }
 };
