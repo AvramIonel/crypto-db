@@ -26,7 +26,6 @@ const validateParams = (params, reqParams) => {
     reqParams.forEach((rp) => {
       if (!paramsArray.includes(rp)) {
         isValid = false;
-        return;
       }
     });
   }

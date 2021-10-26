@@ -11,18 +11,8 @@ const TableComponent = ({
   pageNo = 0,
   decrementButtonDisable = false,
   showPagination = true,
+  containerClassName=''
 }) => {
-  // const [row, setRow] = useState([]);
-
-  // const getImage = (imageSrc) => {
-  //   return <img
-  //     src={imageSrc}
-  //     width="50px"
-  //     alt="icon missing"
-  //     onLoad={() => console.log("image loaded")}
-  //   />;
-  // };
-
   const getTableRow = () => {
     return tableData.map((rowObj, index) => {
       // console.log(rowObj)
@@ -50,7 +40,7 @@ const TableComponent = ({
     });
   };
   return (
-    <div>
+    <div className={containerClassName}>
       <Table striped bordered hover responsive>
         <thead>
           <tr>

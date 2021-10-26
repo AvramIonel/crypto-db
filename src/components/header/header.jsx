@@ -8,7 +8,7 @@ const Header = () => {
       bg="dark"
       variant="dark"
       className="d-flex justify-content-between"
-      fixed="top"
+      // fixed="top"
     >
       <Navbar.Brand className="d-flex">
         <img
