@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Table, Pagination } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./table.css";
 
 const TableComponent = ({
@@ -9,25 +10,39 @@ const TableComponent = ({
   incrementPageNo,
   pageNo = 0,
   decrementButtonDisable = false,
+  showPagination = true,
 }) => {
-  const [row, setRow] = useState([]);
+  // const [row, setRow] = useState([]);
 
-  const getImage = (imageSrc) => {
-    return <img
-      src={imageSrc}
-      width="50px"
-      alt="icon missing"
-      onLoad={() => console.log("image loaded")}
-    />;
-  };
+  // const getImage = (imageSrc) => {
+  //   return <img
+  //     src={imageSrc}
+  //     width="50px"
+  //     alt="icon missing"
+  //     onLoad={() => console.log("image loaded")}
+  //   />;
+  // };
 
   const getTableRow = () => {
     return tableData.map((rowObj, index) => {
+      // console.log(rowObj)
       return (
         <tr key={"table-row-" + index}>
-          {headerData.map((v) => (
+          {headerData.map((v, index) => (
             <td key={v + index}>
-              {v === "image" ? getImage(rowObj[v], index) : rowObj[v]}
+              {/* {v === "image" ? <getImage(rowObj[v], index) : rowObj[v]} */}
+              {v === "image" ? (
+                <Link to={`/details/${rowObj.id}`}>
+                  <img
+                    src={rowObj[v]}
+                    width="50px"
+                    alt="icon missing"
+                    onLoad={() => console.log("image loaded")}
+                  />
+                </Link>
+              ) : (
+                rowObj[v]
+              )}
             </td>
           ))}
         </tr>
