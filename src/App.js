@@ -8,6 +8,10 @@ import FourZeroFour from "./pages/fourZeroFour/fourZeroFour";
 // import Button from "react-bootstrap/Button";
 
 function App() {
+
+localStorage.setItem('page', 1)
+sessionStorage.setItem('page', 1)
+
   return (
     <div className="App">
       <Header />

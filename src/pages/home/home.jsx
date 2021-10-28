@@ -5,10 +5,18 @@ import { Spinner } from "react-bootstrap";
 import "./home.css";
 
 const Home = () => {
+  let persistentPage = sessionStorage.getItem("page") || '1';
+  // if (persistentPage === undefined) persistentPage = 1;
+
   const [list, setList] = useState([]);
   const [error, setError] = useState([]);
-  const [tablePageNo, setTablePageNo] = useState(1);
+  const [tablePageNo, setTablePageNo] = useState(Number(persistentPage));
   const [loading, setLoading] = useState(true);
+
+  // useEffect(() => {
+  //   let persistentPage = sessionStorage.getItem("page");
+  //   if (persistentPage !== null) setTablePageNo(Number(persistentPage));
+  // }, []);
 
   useEffect(() => {
     const getCoinsMarketParams = {
@@ -38,19 +46,26 @@ const Home = () => {
       setLoading(false);
     }
     fetchList();
+    // sessionStorage.setItem
   }, [tablePageNo]);
   // console.log(list);
   function buildTableHeaderData() {
-    return Object.keys(list[0]).filter(k => k !== 'id');
+    return Object.keys(list[0]).filter((k) => k !== "id");
   }
 
   function handleNextTablePage() {
     setTablePageNo((prev) => prev + 1);
+    let persistentPage = sessionStorage.getItem("page");
+    persistentPage = Number(persistentPage) + 1;
+    sessionStorage.setItem("page", persistentPage);
   }
 
   function handlePrexTablePage() {
     if (tablePageNo === 0) return;
     setTablePageNo((prev) => prev - 1);
+    let persistentPage = sessionStorage.getItem("page");
+    persistentPage = Number(persistentPage) - 1;
+    sessionStorage.setItem("page", persistentPage);
   }
 
   return (
@@ -69,7 +84,6 @@ const Home = () => {
       ) : (
         <div style={{ color: "red" }}>{error}</div>
       )}
-      )
     </div>
   );
 };
