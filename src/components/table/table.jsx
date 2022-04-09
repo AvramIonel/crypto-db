@@ -11,7 +11,7 @@ const TableComponent = ({
   pageNo = 0,
   decrementButtonDisable = false,
   showPagination = true,
-  containerClassName=''
+  containerClassName = "",
 }) => {
   const getTableRow = () => {
     return tableData.map((rowObj, index) => {

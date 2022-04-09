@@ -6,7 +6,7 @@ import "./home.css";
 
 const Home = () => {
   let persistentPage = sessionStorage.getItem("page") || '1';
-  // if (persistentPage === undefined) persistentPage = 1;
+  // if (persistentPage !== null) initPage = 1;
 
   const [list, setList] = useState([]);
   const [error, setError] = useState([]);
